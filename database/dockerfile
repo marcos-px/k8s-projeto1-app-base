@@ -1,0 +1,17 @@
+# Imagem base do MySQL 5.7
+FROM mysql:5.7
+
+# Definindo o diretório de trabalho
+WORKDIR /var/lib/mysql/
+
+# Configurando a senha do usuário root do MySQL
+ENV MYSQL_ROOT_PASSWORD=mysql123
+
+# Criando um banco de dados chamado "db01"
+ENV MYSQL_DATABASE=db01
+
+# Copiando o arquivo SQL para o diretório de inicialização do banco de dados
+ADD sql.sql /docker-entrypoint-initdb.d
+
+# Expondo a porta 3306
+EXPOSE 3306
